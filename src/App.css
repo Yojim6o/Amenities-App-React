@@ -166,7 +166,7 @@ header {
 .slider-container {
     width: 455px;
     height: 356px;
-/*    background-image: url("../images/linen1.jpg");*/
+    background-image: url("./linen1.jpg");
     padding: 5px 0 0 0;
     text-align: center;
 }

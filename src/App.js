@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import './App.css';
-
-import HomeComponent from './components/HomeComponent';
-import LocationComponent from './components/LocationComponent';
 
 class App extends Component {
     render() {
@@ -15,7 +13,7 @@ class App extends Component {
                     </h2>
                     <Link
                         className="inline-block search-container"
-                        to="/signout"
+                        to="/"
                     >
                         <i className="fa fa-search" aria-hidden="true"></i>
                     </Link>
