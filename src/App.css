@@ -1,3 +1,10 @@
+* {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    font-size: medium;
+}
+
 h1, h2, h3 {
     font-family: 'Lato', sans-serif;
     font-style: normal;
@@ -48,7 +55,7 @@ h4 {
 .fa-home {
     color: white;
     vertical-align: middle;
-    margin-top: 4px;
+    margin-top: 3px;
 }
 
 .fa-list-arrow {
@@ -64,7 +71,7 @@ h4 {
 
 .fa-search {
     color: white;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .fa-search:hover {
@@ -84,7 +91,7 @@ header {
     text-align: left;
     color: #ffffff;
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 8px;
 }
 
 .header-highlight {
@@ -115,7 +122,7 @@ header {
     height: 636px;
     display: inline-block;
     vertical-align: top;
-    margin: 0 0 0 11px;
+    margin: 0 0 0 14px;
 }
 
 .sidebar-nav {
@@ -161,6 +168,7 @@ header {
 
 .fa-share {
     margin-left: -2px;
+    font-size: 15px;
 }
 
 .slider-container {
@@ -174,7 +182,7 @@ header {
 .slider-header {
     color: #ffffff;
     text-align: center;
-    margin-top: 12px;
+    margin-top: 9px;
 }
 
 .slider-location-text {
@@ -188,7 +196,8 @@ header {
 /*        background-color: #f2f2f2;*/
     border: solid 3px #cccccc;
     border-radius: 50%;
-    margin: 15px 0 15px 0;
+    margin: 14px 0 12px 0;
+    vertical-align: top;
 }
 
 .slider-list-button {
@@ -197,7 +206,7 @@ header {
     width: 180px;
     height: 35px;
     border-radius: 5px;
-    margin-top: 6px;
+/*    margin-top: 6px;*/
 }
 
 .slider-list-button h3 {
@@ -217,18 +226,18 @@ header {
     height: 80px;
     width: 40px;
     border: 0px solid white;
-    top: 25px;
+    top: 69px;
 }
 
 .slider-left {
-    left: -108px;
+    left: -112px;
     text-align: left;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
 }
 
 .slider-right {
-    left: 109px;
+    left: 113px;
     text-align: right;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
@@ -326,6 +335,7 @@ header {
     cursor: pointer;
     outline: 1px solid black;
 }
+
 .amenity-container:hover .see-all {
     color: #000000;
 }

@@ -6,7 +6,7 @@ import SidebarComponent from './SidebarComponent';
 class LocationComponent extends Component {
     render() {
         return (
-            <div>
+            <div className="location-container">
                 <ContentComponent />
                 <SidebarComponent />
             </div>
