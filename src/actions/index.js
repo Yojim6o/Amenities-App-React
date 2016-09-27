@@ -61,7 +61,9 @@ export function getBusinesses(data) {
             'img': business.image_url,
             'address': business.location.address[0],
             'city': business.location.city,
-            'rating': business.rating
+            'state': business.location.state_code,
+            'rating': business.rating,
+            'display_address': business.location.display_address
         });
     }).sort((a, b) => { return b.rating - a.rating; });
 }

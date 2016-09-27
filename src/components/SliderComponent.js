@@ -7,8 +7,25 @@ class SliderComponent extends Component {
         super();
 
         this.state = {
-            slide: 0
+            slide: 0,
+            amenities: 0
         }
+
+        this.changeSlide = this.changeSlide.bind(this);
+    }
+
+    changeSlide(slide, dir, length) {
+        var newValue = slide + dir;
+
+        if (newValue > 0 && newValue < length) {
+            this.setState({ slide: newValue });
+        } else {
+            newValue -= dir;
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ amenities: this.props.amenities });
     }
 
     render() {
@@ -16,9 +33,22 @@ class SliderComponent extends Component {
         const slide = this.state.slide;
         const parser = category.parser;
 
+        const {
+                length
+              } = this.state.amenities === 0 ?
+                0
+              : amenities[parser].businesses;
+
+        const {
+                img,
+                name,
+                display_address
+              } = this.state.amenities === 0 ?
+                 ''
+              : amenities[parser].businesses[slide];
+
         return (
             <div className="slider-container">
-                { console.log(amenities[parser].businesses) }
                 <h2 className="slider-header">
                     What's the highest rated { category.name } in this area?
                 </h2>
@@ -33,6 +63,7 @@ class SliderComponent extends Component {
                     </h3>
                 </div>
                 <button
+                    onClick={ () => this.changeSlide(slide, -1, length) }
                     className="slider-left"
                 >
                     <div>
@@ -45,10 +76,11 @@ class SliderComponent extends Component {
                 </button>
                 <img
                     className="slider-img"
-                    src=''
+                    src={ img }
                     alt=""
                 />
                 <button
+                    onClick={ () => this.changeSlide(slide, 1, length) }
                     className="slider-right"
                 >
                     <div>
@@ -59,9 +91,9 @@ class SliderComponent extends Component {
                         </i>
                     </div>
                 </button>
-                <h2 className="slider-header">[ businesses.selected ]</h2>
+                <h2 className="slider-header">{ name }</h2>
                 <h4 className="slider-location-text">
-                    [ Establishment Addresss ]. [ Location ]
+                    { display_address ? display_address.join(', '): '' }
                 </h4>
                 <button className="slider-list-button">
                     <div className="circle inline-block">
@@ -88,5 +120,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, null)(SliderComponent);
-
-// { amenities.restaurants.businesses[slide].img }
