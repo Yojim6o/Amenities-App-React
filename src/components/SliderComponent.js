@@ -19,7 +19,6 @@ class SliderComponent extends Component {
                 </div>
                 <button
                     className="slider-left"
-                    onClick="changeSelectedDown()"
                 >
                     <div>
                         <i
@@ -36,7 +35,6 @@ class SliderComponent extends Component {
                 />
                 <button
                     className="slider-right"
-                    onClick="changeSelectedUp()"
                 >
                     <div>
                         <i
