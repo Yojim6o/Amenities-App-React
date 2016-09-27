@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchAmenities } from '../actions/index';
+import { fetchAmenities, getLocation } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,7 +9,15 @@ import SidebarComponent from './SidebarComponent';
 class LocationComponent extends Component {
 
     componentDidMount() {
-        this.props.fetchAmenities();
+        const href = window.location.href;
+        const params = href.split('location/')[1];
+        const paramArr = params.split('/');
+
+        const state = paramArr[0];
+        const city = paramArr[1];
+
+        this.props.getLocation(city, state);
+        this.props.fetchAmenities(city, state);
     }
 
     render() {
@@ -31,7 +39,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        fetchAmenities: fetchAmenities
+        fetchAmenities: fetchAmenities,
+        getLocation: getLocation
     }, dispatch)
 }
 

@@ -6,7 +6,7 @@ class HomeComponent extends Component {
         return (
             <div>
                 <Link
-                    to="/location"
+                    to="/location/KS/Wichita"
                 >
                     Wichita
                 </Link>

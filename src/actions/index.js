@@ -1,19 +1,30 @@
 import axios from 'axios';
 
 export const FETCH_AMENITIES = 'FETCH_AMENITIES';
+export const GET_LOCATION = 'GET_LOCATION';
 
 const BASE_URL = 'http://prod-joyfulhome-api.synapsys.us';
 const PATH = '/location/amenitiesInLocation/';
-const PARAMS = 'CA/San%20Francisco';
 
-export function fetchAmenities() {
+export function fetchAmenities(city, state) {
     return function(dispatch) {
         const cb = (res) => {
             return dispatch(loadAmenities(res.data.data));
         }
 
-        axios.get(`${BASE_URL}${PATH}${PARAMS}`)
-            .then(cb)
+        axios.get(`${BASE_URL}${PATH}${state}/${city}`)
+            .then(cb);
+    }
+}
+
+export function getLocation(city, state) {
+    return function(dispatch) {
+        const payload = city + ', ' + state;
+
+        return dispatch({
+            type: GET_LOCATION,
+            payload: payload
+        });
     }
 }
 

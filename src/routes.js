@@ -8,6 +8,6 @@ import LocationComponent from './components/LocationComponent';
 export default(
     <Route path="/" component={App} >
         <IndexRoute component={HomeComponent} />
-        <Route path="location" component={LocationComponent} />
+        <Route path="location/:state/:city" component={LocationComponent} />
     </Route>
 );
