@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 
 class HeaderComponent extends Component {
 
+    // onSubmit() {
+    //     this.props.resetLocation();
+    // }
+
     render() {
         return (
             <header>

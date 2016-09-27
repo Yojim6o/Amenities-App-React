@@ -23,18 +23,11 @@ class LocationComponent extends Component {
     render() {
         return (
             <div className="location-container">
-                { console.log(this.props.amenities) }
                 <ContentComponent />
                 <SidebarComponent />
             </div>
         );
     }
-}
-
-function mapStateToProps(state) {
-    return {
-        amenities: state.amenities
-    };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -44,4 +37,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationComponent);
+export default connect(null, mapDispatchToProps)(LocationComponent);

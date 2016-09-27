@@ -19,7 +19,22 @@ export function fetchAmenities(city, state) {
 
 export function getLocation(city, state) {
     return function(dispatch) {
-        const payload = city + ', ' + state;
+        var payload = city + ', ' + state;
+
+        if (payload.indexOf('%') > -1) {
+            payload = payload.replace('%20', ' ');
+        }
+
+        return dispatch({
+            type: GET_LOCATION,
+            payload: payload
+        });
+    }
+}
+
+export function resetLocation() {
+    return function(dispatch) {
+        const payload = '...';
 
         return dispatch({
             type: GET_LOCATION,
