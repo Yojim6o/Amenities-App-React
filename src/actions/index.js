@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const FETCH_AMENITIES = 'FETCH_AMENITIES';
-export const GET_LOCATION = 'GET_LOCATION';
+export const SET_LOCATION = 'SET_LOCATION';
 
 const BASE_URL = 'http://prod-joyfulhome-api.synapsys.us';
 const PATH = '/location/amenitiesInLocation/';
@@ -26,7 +26,7 @@ export function getLocation(city, state) {
         }
 
         return dispatch({
-            type: GET_LOCATION,
+            type: SET_LOCATION,
             payload: payload
         });
     }
@@ -37,7 +37,7 @@ export function resetLocation() {
         const payload = '...';
 
         return dispatch({
-            type: GET_LOCATION,
+            type: SET_LOCATION,
             payload: payload
         });
     }
@@ -74,11 +74,11 @@ export function getPayload(data) {
         },
         'grocers': {
             'total': data.grocers.total,
-            'busineses': getBusinesses(data.grocers.businesses)
+            'businesses': getBusinesses(data.grocers.businesses)
         },
         'banks': {
             'total': data.banks.total,
-            'busineses': getBusinesses(data.banks.businesses)
+            'businesses': getBusinesses(data.banks.businesses)
         }
     });
 }

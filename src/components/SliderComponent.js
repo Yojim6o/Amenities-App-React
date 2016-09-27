@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class SliderComponent extends Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            slide: 0
+        }
+    }
+
     render() {
+        const { amenities, category, location } = this.props;
+        const slide = this.state.slide;
+        const parser = category.parser;
+
         return (
             <div className="slider-container">
+                { console.log(amenities[parser].businesses) }
                 <h2 className="slider-header">
-                    What's the highest rated [amenity] in this area?
+                    What's the highest rated { category.name } in this area?
                 </h2>
                 <div>
                     <i
@@ -14,7 +29,7 @@ class SliderComponent extends Component {
                     >
                     </i>
                     <h3 className="slider-location-text inline-block">
-                        [Listing Name]
+                        { location }
                     </h3>
                 </div>
                 <button
@@ -30,7 +45,7 @@ class SliderComponent extends Component {
                 </button>
                 <img
                     className="slider-img"
-                    src="https://s3-media2.fl.yelpcdn.com/bphoto/yH4icakrVBLn-o2guHwoWA/ms.jpg"
+                    src=''
                     alt=""
                 />
                 <button
@@ -64,4 +79,14 @@ class SliderComponent extends Component {
     }
 }
 
-export default SliderComponent;
+function mapStateToProps(state) {
+    return {
+        category: state.category,
+        location: state.location,
+        amenities: state.amenities
+    };
+}
+
+export default connect(mapStateToProps, null)(SliderComponent);
+
+// { amenities.restaurants.businesses[slide].img }

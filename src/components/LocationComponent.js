@@ -5,8 +5,16 @@ import { bindActionCreators } from 'redux';
 
 import ContentComponent from './ContentComponent';
 import SidebarComponent from './SidebarComponent';
+import Loader from 'react-loader';
 
 class LocationComponent extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            loaded: false
+        }
+    }
 
     componentDidMount() {
         const href = window.location.href;
@@ -18,13 +26,17 @@ class LocationComponent extends Component {
 
         this.props.getLocation(city, state);
         this.props.fetchAmenities(city, state);
+
+        this.setState({ loaded: true });
     }
 
     render() {
         return (
             <div className="location-container">
-                <ContentComponent />
-                <SidebarComponent />
+                <Loader loaded={this.state.loaded}>
+                    <ContentComponent />
+                    <SidebarComponent />
+                </Loader>
             </div>
         );
     }
