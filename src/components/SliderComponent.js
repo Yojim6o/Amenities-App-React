@@ -29,9 +29,9 @@ class SliderComponent extends Component {
     }
 
     render() {
-        const { amenities, category, location } = this.props;
+        const { amenities, categories, location } = this.props;
         const slide = this.state.slide;
-        const parser = category.parser;
+        const parser = categories[0].parser;
 
         const {
                 length
@@ -50,7 +50,7 @@ class SliderComponent extends Component {
         return (
             <div className="slider-container">
                 <h2 className="slider-header">
-                    What's the highest rated { category.name } in this area?
+                    What's the highest rated { categories[0].sliderName } in this area?
                 </h2>
                 <div>
                     <i
@@ -113,7 +113,7 @@ class SliderComponent extends Component {
 
 function mapStateToProps(state) {
     return {
-        category: state.category,
+        categories: state.categories,
         location: state.location,
         amenities: state.amenities
     };

@@ -1,37 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import AmenityComponent from './AmenityComponent';
 
-const amenities = [
-    {
-        'name': 'Restaurants',
-        'icon': 'fa-cutlery',
-        'id': 1
-    },
-    {
-        'name': 'Grocery Stores',
-        'icon': 'fa-shopping-cart',
-        'id': 2
-    },
-    {
-        'name': 'Banks',
-        'icon': 'fa-university',
-        'id': 3
-    },
-    {
-        'name': 'Other Amenities',
-        'icon': 'fa-ellipsis-h',
-        'id': 4
-    }
-];
-
 class AmenitiesComponent extends Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            amenities: 0
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            amenities: this.props.amenities
+        });
+    }
+
     renderList() {
-        return amenities.map(amenity => {
+        const { categories } = this.props;
+
+        return categories.map(category => {
+            const parser = category.parser
+            const { total } = this.state.amenities === 0 ? 0 :
+                this.props.amenities[parser];
+
             return (
                 <AmenityComponent
-                    key={ amenity.id }
-                    amenity={ amenity }
+                    key={ category.id }
+                    category={ category }
+                    total={ total }
                 />
             );
         });
@@ -41,6 +41,27 @@ class AmenitiesComponent extends Component {
         return (
             <div className="amenities-container">
                 { this.renderList() }
+                <div className="amenity-container">
+                    <div className="icon-container inline-block">
+                        <i
+                            className={
+                                "fa fa-ellipsis-h amenity-icon"
+                            }
+                            aria-hidden="true"
+                        >
+                        </i>
+                    </div>
+                    <div className="top inline-block amenity-detail">
+                        <div className="inline-block">
+                            <h2>Other Amenities</h2>
+                            <h3>0 near this listing</h3>
+                        </div>
+                        <h2 className="see-all inline-block top">
+                            See All
+                            <i></i>
+                        </h2>
+                    </div>
+                </div>
                 <center>
                     <button className="amenity-list-button">
                         <div className="circle inline-block">
@@ -60,4 +81,11 @@ class AmenitiesComponent extends Component {
     }
 }
 
-export default AmenitiesComponent;
+function mapStateToProps(state) {
+    return {
+        categories: state.categories,
+        amenities: state.amenities
+    };
+}
+
+export default connect(mapStateToProps, null)(AmenitiesComponent);

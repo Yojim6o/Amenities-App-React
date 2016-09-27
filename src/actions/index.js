@@ -59,9 +59,6 @@ export function getBusinesses(data) {
             'id': business.id,
             'name': business.name,
             'img': business.image_url,
-            'address': business.location.address[0],
-            'city': business.location.city,
-            'state': business.location.state_code,
             'rating': business.rating,
             'display_address': business.location.display_address
         });

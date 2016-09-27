@@ -6,7 +6,7 @@ import CategoryReducer from './reducerCategory';
 const rootReducer = combineReducers({
     amenities: AmenitiesReducer,
     location: LocationReducer,
-    category: CategoryReducer
+    categories: CategoryReducer
 });
 
 export default rootReducer;
