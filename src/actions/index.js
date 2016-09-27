@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const FETCH_AMENITIES = 'FETCH_AMENITIES';
 export const SET_LOCATION = 'SET_LOCATION';
+export const SET_SELECTED = 'SET_SELECTED';
 
 const BASE_URL = 'http://prod-joyfulhome-api.synapsys.us';
 const PATH = '/location/amenitiesInLocation/';
@@ -80,4 +81,15 @@ export function getPayload(data) {
             'businesses': getBusinesses(data.banks.businesses)
         }
     });
+}
+
+export function selectCategory(index) {
+    return function(dispatch) {
+        const payload = index;
+
+        return dispatch({
+            type: SET_SELECTED,
+            payload: payload
+        });
+    }
 }

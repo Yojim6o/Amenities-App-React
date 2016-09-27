@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import notPictured from '../not-pictured.jpg';
+
 class SliderComponent extends Component {
 
     constructor() {
@@ -19,8 +21,6 @@ class SliderComponent extends Component {
 
         if (newValue > 0 && newValue < length) {
             this.setState({ slide: newValue });
-        } else {
-            newValue -= dir;
         }
     }
 
@@ -29,9 +29,9 @@ class SliderComponent extends Component {
     }
 
     render() {
-        const { amenities, categories, location } = this.props;
+        const { amenities, categories, location, selected } = this.props;
         const slide = this.state.slide;
-        const parser = categories[0].parser;
+        const parser = categories[selected].parser;
 
         const {
                 length
@@ -50,7 +50,7 @@ class SliderComponent extends Component {
         return (
             <div className="slider-container">
                 <h2 className="slider-header">
-                    What's the highest rated { categories[0].sliderName } in this area?
+                    What's the highest rated { categories[selected].sliderName } in this area?
                 </h2>
                 <div>
                     <i
@@ -76,7 +76,7 @@ class SliderComponent extends Component {
                 </button>
                 <img
                     className="slider-img"
-                    src={ img }
+                    src={ img || notPictured }
                     alt=""
                 />
                 <button
@@ -115,7 +115,8 @@ function mapStateToProps(state) {
     return {
         categories: state.categories,
         location: state.location,
-        amenities: state.amenities
+        amenities: state.amenities,
+        selected: state.selected
     };
 }
 

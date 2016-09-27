@@ -1,32 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import NearbyButtonComponent from './NearbyButtonComponent';
 
-const amenities = [
-    {
-        'name': 'Restaurants',
-        'icon': 'fa-cutlery',
-        'id': 1
-    },
-    {
-        'name': 'Groceries',
-        'icon': 'fa-shopping-cart',
-        'id': 2
-    },
-    {
-        'name': 'Banks',
-        'icon': 'fa-university',
-        'id': 3
-    }
-];
-
 class SidebarComponent extends Component {
+
     renderList() {
-        return amenities.map(amenity => {
+        const { categories } = this.props;
+
+        return categories.map(category => {
             return (
                 <NearbyButtonComponent
-                    key={ amenity.id }
-                    amenity={ amenity }
+                    key={ category.id }
+                    category={ category }
                 />
             );
         });
@@ -58,4 +44,10 @@ class SidebarComponent extends Component {
     }
 }
 
-export default SidebarComponent;
+function mapStateToProps(state) {
+    return {
+        categories: state.categories
+    };
+}
+
+export default connect(mapStateToProps, null)(SidebarComponent);
