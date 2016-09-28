@@ -1,6 +1,6 @@
-const INITIAL_STATE = [
+export const CATEGORIES = [
     {
-        'parser': 'restaurants',
+        'parser': 'restaurant',
         'sliderName': 'restaurant',
         'listName': 'Restaurants',
         'sidebarName': 'Restaurants',
@@ -24,7 +24,3 @@ const INITIAL_STATE = [
         'id': 2
     }
 ];
-
-export default function(state = INITIAL_STATE, action) {
-    return state;
-}

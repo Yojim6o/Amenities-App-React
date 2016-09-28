@@ -12,7 +12,7 @@ class HomeComponent extends Component {
 
     render() {
         return (
-            <div>
+            <div className="home-container">
                 <Link
                     to="/location/KS/Wichita"
                 >

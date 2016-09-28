@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CATEGORIES } from '../constants/Categories';
 
 import AmenityComponent from './AmenityComponent';
 
@@ -20,9 +21,7 @@ class AmenitiesComponent extends Component {
     }
 
     renderList() {
-        const { categories } = this.props;
-
-        return categories.map(category => {
+        return CATEGORIES.map(category => {
             const parser = category.parser
             const { total } = this.state.amenities === 0 ? 0 :
                 this.props.amenities[parser];
@@ -83,7 +82,6 @@ class AmenitiesComponent extends Component {
 
 function mapStateToProps(state) {
     return {
-        categories: state.categories,
         amenities: state.amenities
     };
 }

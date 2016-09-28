@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { CATEGORIES } from '../constants/Categories';
+
 import notPictured from '../not-pictured.jpg';
 
 class SliderComponent extends Component {
@@ -29,14 +31,11 @@ class SliderComponent extends Component {
     }
 
     render() {
-        const { amenities, categories, location, selected } = this.props;
+        const { amenities, location, selected } = this.props;
         const slide = this.state.slide;
-        const parser = categories[selected].parser;
+        const parser = CATEGORIES[selected].parser;
 
-        const {
-                length
-              } = this.state.amenities === 0 ?
-                0
+        const { length } = this.state.amenities === 0 ? 0
               : amenities[parser].businesses;
 
         const {
@@ -50,7 +49,7 @@ class SliderComponent extends Component {
         return (
             <div className="slider-container">
                 <h2 className="slider-header">
-                    What's the highest rated { categories[selected].sliderName } in this area?
+                    What's the highest rated { CATEGORIES[selected].sliderName } in this area?
                 </h2>
                 <div>
                     <i
@@ -113,7 +112,6 @@ class SliderComponent extends Component {
 
 function mapStateToProps(state) {
     return {
-        categories: state.categories,
         location: state.location,
         amenities: state.amenities,
         selected: state.selected

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CATEGORIES } from '../constants/Categories';
 
 export const FETCH_AMENITIES = 'FETCH_AMENITIES';
 export const SET_LOCATION = 'SET_LOCATION';
@@ -57,30 +58,30 @@ export function loadAmenities(data) {
 export function getBusinesses(data) {
     return data.map((business) => {
         return({
-            'id': business.id,
-            'name': business.name,
-            'img': business.image_url,
-            'rating': business.rating,
-            'display_address': business.location.display_address
+            id: business.id,
+            name: business.name,
+            img: business.image_url,
+            rating: business.rating,
+            display_address: business.location.display_address
         });
     }).sort((a, b) => { return b.rating - a.rating; });
 }
 
 export function getPayload(data) {
-    return({
-        'restaurants': {
-            'total': data.restaurant.total,
-            'businesses': getBusinesses(data.restaurant.businesses)
-        },
-        'grocers': {
-            'total': data.grocers.total,
-            'businesses': getBusinesses(data.grocers.businesses)
-        },
-        'banks': {
-            'total': data.banks.total,
-            'businesses': getBusinesses(data.banks.businesses)
+    const length = CATEGORIES.length;
+    const obj = {};
+
+    for (let i = 0; i < length; i++) {
+        const parser = CATEGORIES[i].parser;
+        const amenity = data[parser];
+
+        obj[parser] = {
+            total: amenity.total,
+            businesses: getBusinesses(amenity.businesses)
         }
-    });
+    }
+
+    return obj;
 }
 
 export function selectCategory(index) {

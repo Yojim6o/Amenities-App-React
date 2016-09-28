@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { CATEGORIES } from '../constants/Categories';
 
 import NearbyButtonComponent from './NearbyButtonComponent';
 
 class SidebarComponent extends Component {
 
     renderList() {
-        const { categories } = this.props;
-
-        return categories.map(category => {
+        return CATEGORIES.map(category => {
             return (
                 <NearbyButtonComponent
                     key={ category.id }
@@ -44,10 +42,4 @@ class SidebarComponent extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        categories: state.categories
-    };
-}
-
-export default connect(mapStateToProps, null)(SidebarComponent);
+export default SidebarComponent;
