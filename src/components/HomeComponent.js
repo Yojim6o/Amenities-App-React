@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { resetLocation } from '../actions/index';
+import { resetLocation, getCoords } from '../actions/index';
 
 class HomeComponent extends Component {
 
     componentDidMount() {
         this.props.resetLocation();
+    }
+
+    onSubmit() {
+        getCoords();
     }
 
     render() {
@@ -18,6 +22,12 @@ class HomeComponent extends Component {
                 >
                     Wichita
                 </Link>
+                <br /><br />
+                <button
+                    onClick={ () => this.onSubmit() }
+                >
+                    Me!
+                </button>
             </div>
         );
     }

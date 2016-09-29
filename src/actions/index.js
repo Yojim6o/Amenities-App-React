@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { CATEGORIES } from '../constants/Categories';
 
+import geolocation from 'geolocation';
+
 export const FETCH_AMENITIES = 'FETCH_AMENITIES';
 export const SET_LOCATION = 'SET_LOCATION';
 export const SET_SELECTED = 'SET_SELECTED';
@@ -45,7 +47,6 @@ export function resetLocation() {
     }
 }
 
-// todo: better naming
 export function loadAmenities(data) {
     return function(dispatch) {
         return dispatch({
@@ -93,4 +94,27 @@ export function selectCategory(index) {
             payload: payload
         });
     }
+}
+
+export function getCoords() {
+    geolocation.getCurrentPosition(function (err, position) {
+        if (err) throw err;
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        reverseGeocode(lat, lon);
+    });
+}
+
+export function reverseGeocode(lat, lon) {
+    const cb = (res) => {
+        const results = res.data.results[0].address_components.reverse();
+        const city = results[4].long_name;
+        const state = results[2].short_name;
+
+        window.location.href = `./location/${state}/${city}`;
+    }
+
+    axios.get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&sensor=false`)
+        .then(cb);
 }

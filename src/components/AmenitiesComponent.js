@@ -22,7 +22,7 @@ class AmenitiesComponent extends Component {
 
     renderList() {
         return CATEGORIES.map(category => {
-            const parser = category.parser
+            const parser = category.parser;
             const { total } = this.state.amenities === 0 ? 0 :
                 this.props.amenities[parser];
 
