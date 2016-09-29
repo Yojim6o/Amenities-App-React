@@ -33,7 +33,7 @@ class LocationComponent extends Component {
     render() {
         return (
             <div className="location-container">
-                <Loader loaded={this.state.loaded}>
+                <Loader loaded={ this.state.loaded }>
                     <ContentComponent />
                     <SidebarComponent />
                 </Loader>

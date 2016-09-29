@@ -153,6 +153,7 @@ header {
 
 .nearby-button-container:hover {
     cursor: pointer;
+    opacity: 0.6;
 }
 
 .sidebar-icon {
@@ -179,6 +180,10 @@ header {
 .fa-share {
     margin-left: -2px;
     font-size: 15px;
+}
+
+.fa-refresh {
+    font-size: 18px;
 }
 
 .slider-container {
@@ -216,10 +221,12 @@ header {
     width: 180px;
     height: 35px;
     border-radius: 5px;
+    color: white;
 }
 
 .slider-list-button:hover {
     cursor: pointer;
+    color: black;
 }
 
 .slider-list-button h3 {
