@@ -28,7 +28,7 @@ Please let me know!  I will continue to refactor and improve the application.
 
 ## Credited Services
 
-SNT Media design
-Yelp API
-Google Geolocation Services
-Create-React-App
+- SNT Media design
+- Yelp API
+- Google Geolocation Services
+- Create-React-App
