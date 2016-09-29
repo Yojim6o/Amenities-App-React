@@ -19,7 +19,7 @@ class HomeComponent extends Component {
     onSubmit() {
         getCoords();
 
-        this.setState({ loading: true })
+        this.setState({ loading: true });
     }
 
     render() {
