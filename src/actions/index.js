@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { CATEGORIES } from '../constants/Categories';
+import { browserHistory } from 'react-router';
 
 import geolocation from 'geolocation';
 
@@ -7,7 +8,7 @@ export const FETCH_AMENITIES = 'FETCH_AMENITIES';
 export const SET_LOCATION = 'SET_LOCATION';
 export const SET_SELECTED = 'SET_SELECTED';
 
-const BASE_URL = 'http://prod-joyfulhome-api.synapsys.us';
+const BASE_URL = 'https://prod-joyfulhome-api.synapsys.us';
 const PATH = '/location/amenitiesInLocation/';
 
 export function fetchAmenities(city, state) {
@@ -112,9 +113,9 @@ export function reverseGeocode(lat, lon) {
         const city = results[4].long_name;
         const state = results[2].short_name;
 
-        window.location.href = `./location/${state}/${city}`;
+        browserHistory.push(`/location/${state}/${city}`);
     }
 
-    axios.get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&sensor=false`)
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&sensor=false`)
         .then(cb);
 }
