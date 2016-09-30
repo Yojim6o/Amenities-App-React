@@ -8,6 +8,7 @@ import SidebarComponent from './SidebarComponent';
 import Loader from 'react-loader';
 
 class LocationComponent extends Component {
+
     constructor() {
         super();
 
@@ -25,9 +26,7 @@ class LocationComponent extends Component {
         const city = paramArr[1];
 
         this.props.getLocation(city, state);
-        this.props.fetchAmenities(city, state);
-
-        this.setState({ loaded: true });
+        this.props.fetchAmenities(city, state, this);
     }
 
     render() {

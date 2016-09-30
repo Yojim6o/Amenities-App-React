@@ -11,9 +11,10 @@ export const SET_SELECTED = 'SET_SELECTED';
 const BASE_URL = 'https://prod-joyfulhome-api.synapsys.us';
 const PATH = '/location/amenitiesInLocation/';
 
-export function fetchAmenities(city, state) {
+export function fetchAmenities(city, state, component) {
     return function(dispatch) {
         const cb = (res) => {
+            component.setState({ loaded: true });
             return dispatch(loadAmenities(res.data.data));
         }
 
