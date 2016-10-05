@@ -192,6 +192,7 @@ header {
     background-image: url("./linen1.jpg");
     padding: 5px 0 0 0;
     text-align: center;
+    position: relative;
 }
 
 .slider-header {
@@ -240,13 +241,13 @@ header {
 
 .slider-left,
 .slider-right {
-    position: relative;
+    position: absolute;
     background-color: black;
     color: white;
     height: 80px;
     width: 40px;
     border: 0px solid white;
-    top: 69px;
+    top: 132px;
 }
 
 .slider-left:hover,
@@ -256,14 +257,14 @@ header {
 }
 
 .slider-left {
-    left: -113px;
+    left: 0px;
     text-align: left;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
 }
 
 .slider-right {
-    left: 112px;
+    right: 0px;
     text-align: right;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
@@ -368,4 +369,24 @@ header {
 
 .amenity-container:hover .see-all {
     color: #000000;
+}
+
+.carousel-enter {
+    opacity: 0.01;
+}
+
+.carousel-enter-active {
+    opacity: 1;
+/*    transition: opacity 500ms ease-in;*/
+    transition: 0.5s ease-in all;
+}
+
+.carousel-leave {
+    opacity: 1;
+}
+
+.carousel-leave-active {
+    opacity: 0.01;
+/*    transition: opacity 300ms ease-in;*/
+    transition: 0.5s ease-out all;
 }

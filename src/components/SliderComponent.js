@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { CATEGORIES } from '../constants/Categories';
 
 import notPictured from '../not-pictured.jpg';
+
+//generate uuid
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
 
 class SliderComponent extends Component {
 
@@ -73,11 +85,18 @@ class SliderComponent extends Component {
                         </i>
                     </div>
                 </button>
-                <img
-                    className="slider-img"
-                    src={ img || notPictured }
-                    alt=""
-                />
+                <ReactCSSTransitionGroup
+                    transitionName="carousel"
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}
+                >
+                    <img
+                        className="slider-img"
+                        src={ img || notPictured }
+                        alt=""
+                        key={ guid() }
+                    />
+                </ReactCSSTransitionGroup>
                 <button
                     onClick={ () => this.changeSlide(slide, 1, length) }
                     className="slider-right"
@@ -90,7 +109,9 @@ class SliderComponent extends Component {
                         </i>
                     </div>
                 </button>
-                <h2 className="slider-header">{ name }</h2>
+                <h2 className="slider-header">
+                    { name }
+                </h2>
                 <h4 className="slider-location-text">
                     { display_address ? display_address.join(', '): '' }
                 </h4>
